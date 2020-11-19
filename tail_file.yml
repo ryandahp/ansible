@@ -1,0 +1,18 @@
+- hosts: 10.70.12.145
+  tasks:
+  - name: tail robotic log
+    #become: true
+    #become_user: root
+    command: tail -n -2 /home/k21303/dev/RobotWS/TestSuite1/dlog/example.log
+    register: taillog
+  - debug: var=taillog.stdout_lines
+
+- hosts: 192.168.92.75
+  tasks:
+  - name: tail logstash log
+    #become: true
+    #become_user: root
+    command: tail -n -2 /var/log/logstash/logstash-plain.log
+    register: taillog_ls
+  - debug: var=taillog_ls.stdout_lines
+
